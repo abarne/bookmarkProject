@@ -3,6 +3,16 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Users = require('../users/users-model.js');
 
+router.get('/', (req, res) => {
+	Users.find()
+		.then((response) => {
+			res.status(200).json(response);
+		})
+		.catch((error) => {
+			res.status(500).json({ message: 'Error getting users' });
+		});
+});
+
 router.post('/register', (req, res) => {
 	let user = req.body;
 	const hash = bcrypt.hashSync(user.password);
