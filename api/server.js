@@ -9,8 +9,9 @@ const linkRouter = require('../data/links/link-router.js');
 
 const server = express();
 
-server.use(helmet());
 server.use(cors());
+
+server.use(helmet());
 server.use(express.json());
 
 server.use('/api/auth', authRouter);
