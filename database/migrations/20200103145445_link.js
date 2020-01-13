@@ -3,6 +3,7 @@ exports.up = function(knex) {
 		link.increments();
 
 		link.string('title', 255);
+		link.string('url-link');
 		link
 			.integer('subId')
 			.unsigned()
@@ -14,5 +15,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-	return kenx.schema.dropTableIfExists('link');
+	return knex.schema.dropTableIfExists('link');
 };
