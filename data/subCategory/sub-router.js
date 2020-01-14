@@ -2,8 +2,9 @@ const router = require('express').Router();
 const db = require('./sub-model.js');
 
 router.get('/', (req, res) => {
+	const id = req.params.id;
 	db
-		.find()
+		.find(id)
 		.then((subCats) => {
 			res.status(200).json(subCats);
 		})
