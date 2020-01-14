@@ -7,8 +7,8 @@ module.exports = {
 	remove
 };
 
-function find() {
-	return knex('subCategory').select('*');
+function find(id) {
+	return knex('subCategory').where('mainId', id).select('*');
 }
 
 function add(main) {
