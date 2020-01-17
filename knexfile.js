@@ -8,5 +8,12 @@ module.exports = {
 			tableName: 'dbmigrations'
 		},
 		seeds: { directory: './database/seeds' }
+	},
+	productions: {
+		client: 'pg',
+		connection: process.env.DATABASE_URL,
+		migrations: {
+			directory: './database/migrations'
+		}
 	}
 };
