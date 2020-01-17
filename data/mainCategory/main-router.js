@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 			res.status(200).json(mainCats);
 		})
 		.catch((error) => {
-			res.status(500).json({ message: 'There was an error retrieving the main categories' });
+			res.status(500).json({ message: 'There was an error retrieving the main categories', error: error });
 		});
 });
 
