@@ -10,9 +10,8 @@ module.exports = {
 		seeds: { directory: './database/seeds' }
 	},
 	production: {
-		client: 'sqlite3',
-		useNullAsDefault: true,
-		connection: { filename: './database/auth.db3' },
+		client: 'pg',
+		connection: 'de3i0svfirhp2p',
 		migrations: {
 			directory: './database/migrations'
 		}
