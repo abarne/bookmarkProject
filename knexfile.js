@@ -11,7 +11,7 @@ module.exports = {
 	},
 	production: {
 		client: 'pg',
-		connection: 'de3i0svfirhp2p',
+		connection: de3i0svfirhp2p,
 		migrations: {
 			directory: './database/migrations'
 		}
