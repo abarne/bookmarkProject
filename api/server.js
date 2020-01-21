@@ -9,31 +9,36 @@ const linkRouter = require('../data/links/link-router.js');
 
 const server = express();
 
+////start postgres
+const { Pool, Client } = require('pg');
+const connectionString =
+	'postgres://rltzgeqvynynbu:5b6d253a56e65183a8ecb6fbd489543e2ea117e6d9448ecc227bccffae8fb31e@ec2-23-21-13-88.compute-1.amazonaws.com:5432/de3i0svfirhp2p';
+const pool = new Pool({
+	connectionString: connectionString
+});
+pool.query('SELECT NOW()', (err, res) => {
+	console.log(err, res);
+	pool.end();
+});
+const client = new Client({
+	connectionString: connectionString
+});
+client.connect();
+client.query('SELECT NOW()', (err, res) => {
+	console.log(err, res);
+	client.end();
+});
+
+///end postgres
+
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
-
-// const corsOptions = {
-// 	origin: '*'
-//
-// };
 
 server.use('/api/auth', authRouter);
 server.use('/api/main', mainRouter);
 server.use('/api/sub', subRouter);
 server.use('/api/link', linkRouter);
-
-// server.use(cors(corsOptions));
-// server.use(function(req, res, next) {
-// 	res.header('Access-Control-Allow-Origin', '*');
-// 	res.header('Access-Control-Allow-Credentials', true);
-// 	res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
-// 	res.header(
-// 		'Access-Control-Allow-Headers',
-// 		'Origin, X-Requested-With, Content-Type, content-type, application/json'
-// 	);
-// 	next();
-// });
 
 server.get('/', (req, res) => {
 	res.status(200).json({ message: 'server is working' });
